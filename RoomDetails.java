@@ -38,7 +38,7 @@ public class RoomDetails
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="un_fk",referencedColumnName="hotel_id")
-	private RoomDetails roomDetails;
+	private Hotel hotel;
 	
 	public RoomDetails()
 	{
