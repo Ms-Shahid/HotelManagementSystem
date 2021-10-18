@@ -7,6 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class BookingDetails {
@@ -14,29 +20,49 @@ public class BookingDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer booking_id;
+	
 	@Column
+	@Min(value=1)
+	@NotNull(message = "Please provide Hotel id")
 	private Integer hotel_id;
+	
 	@Column
+	@Min(value = 1)
+	@NotNull(message = "Please provide Room id")
 	private Integer room_id;
+	
 	@Column
+	@Min(value =1)
+	@NotNull(message = "Please provide user id")
 	private Integer user_id;
+	
 	@Column
+	@NotNull(message = "Please provide Booking date")
 	private Date booked_from;
+	
 	@Column
+	@NotNull(message = "Please provide End date")
 	private Date booked_to;
+	
 	@Column
+	@NotNull(message = "Please provide number of adults")
 	private Integer no_of_adults;
+	
 	@Column
+	@NotNull(message = "Please provide number of children")
 	private Integer no_of_children;
+	
 	@Column
+	@Min(value=1000)
+	@NotNull(message = "Please provide booking amount")
 	private Double amount;
-	
+
 	public BookingDetails() {
-		
+
 	}
-	
-	public BookingDetails(Integer booking_id,Integer hotel_id, Integer room_id, Integer user_id,
-		Date booked_from, Date booked_to, Integer no_of_adults, Integer no_of_children, Double amount) {
+
+	public BookingDetails(Integer booking_id, Integer hotel_id, Integer room_id, Integer user_id, Date booked_from,
+			Date booked_to, Integer no_of_adults, Integer no_of_children, Double amount) {
 		this.booking_id = booking_id;
 		this.hotel_id = hotel_id;
 		this.room_id = room_id;
@@ -119,6 +145,5 @@ public class BookingDetails {
 	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
-	
-	
+
 }
